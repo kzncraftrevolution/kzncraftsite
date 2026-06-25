@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KZN Craft Revolution – Everything craft beer related in KwaZulu-Natal</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f0b08;
+            --bg-panel: #17110d;
+            --bg-card: #1e1612;
+            --gold: #d4a017;
+            --gold-bright: #f2c94c;
+            --gold-glow: rgba(212, 160, 23, 0.25);
+            --text-primary: #f5f1e8;
+            --text-muted: #c6b8a3;
+            --text-dim: #8a7a66;
+            --border-subtle: rgba(212, 160, 23, 0.15);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 16px 48px rgba(212, 160, 23, 0.18);
+            --radius: 16px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font);
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M30 0L36 18H54L40 28L46 46L30 36L14 46L20 28L6 18H24L30 0Z" fill="rgba(212,160,23,0.04)"/></svg>');
+            background-repeat: repeat;
+            background-size: 60px 60px;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ============================================================
+                   BUTTONS
+                   ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: #111 !important;
+            padding: 0.7rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            border: none;
+            cursor: pointer;
+            transition: transform var(--transition), box-shadow var(--transition);
+            box-shadow: 0 4px 16px rgba(212, 160, 23, 0.25);
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(212, 160, 23, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background: transparent !important;
+            color: var(--gold) !important;
+            border: 2px solid var(--gold) !important;
+            box-shadow: none !important;
+        }
+
+        .btn-outline:hover {
+            background: var(--gold) !important;
+            color: #111 !important;
+            box-shadow: 0 4px 20px rgba(212, 160, 23, 0.3) !important;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 1.2rem;
+            font-size: 0.8rem;
+        }
+
+        /* ============================================================
+                   HEADER / NAV
+                   ============================================================ */
+        header {
+            background: var(--bg-panel);
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.5rem 0;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        .logo-tagline {
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: var(--text-dim);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: block;
+            margin-top: -2px;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            position: relative;
+            padding: 0.25rem 0;
+            transition: color var(--transition);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a.btn-nav {
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: #111 !important;
+            padding: 0.4rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 12px rgba(212, 160, 23, 0.2);
+        }
+
+        nav ul li a.btn-nav::after {
+            display: none;
+        }
+
+        nav ul li a.btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(212, 160, 23, 0.35);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background: var(--text-primary);
+            border-radius: 3px;
+            transition: var(--transition);
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ============================================================
+                   HERO
+                   ============================================================ */
+        .hero {
+            position: relative;
+            padding: 6rem 0 5rem;
+            background:
+                linear-gradient(rgba(10, 8, 6, 0.82), rgba(10, 8, 6, 0.92)),
+                url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .hero::after {
+            content: '🍺';
+            position: absolute;
+            font-size: 28rem;
+            opacity: 0.04;
+            right: -6rem;
+            bottom: -8rem;
+            transform: rotate(6deg);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.08;
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 720px;
+            margin: 0 auto 2.2rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .hero .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================================
+                   SECTION SHARED
+                   ============================================================ */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            line-height: 1.15;
+        }
+
+        .section-title span {
+            color: var(--gold);
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-center .section-sub {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+            border-radius: 3px;
+            margin: 0.5rem auto 1.5rem;
+        }
+
+        /* ============================================================
+                   ABOUT
+                   ============================================================ */
+        #about {
+            background: var(--bg-primary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .about-image {
+            background: var(--bg-panel);
+            border-radius: var(--radius);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .about-image img {
+            max-width: 80%;
+            height: auto;
+            filter: drop-shadow(0 8px 32px rgba(212, 160, 23, 0.15));
+            transition: transform var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.02);
+        }
+
+        /* ============================================================
+                   BREWERIES
+                   ============================================================ */
+        #breweries {
+            background: var(--bg-panel);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .breweries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .brewery-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 2rem 1.8rem;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brewery-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--gold);
+        }
+
+        .brewery-card .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .brewery-card .card-logo {
+            flex-shrink: 0;
+            width: 70px;
+            height: 70px;
+            background: var(--bg-panel);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-subtle);
+            overflow: hidden;
+            padding: 6px;
+        }
+
+        .brewery-card .card-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .brewery-card .card-title {
+            flex: 1;
+        }
+
+        .brewery-card .card-title h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .brewery-card .card-title .est {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        .brewery-card .card-body {
+            flex: 1;
+        }
+
+        .brewery-card .card-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .brewery-card .card-body .read-more {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: gap var(--transition);
+        }
+
+        .brewery-card .card-body .read-more:hover {
+            gap: 0.6rem;
+        }
+
+        .brewery-card .card-details {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-subtle);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .brewery-card .card-details .detail-label {
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        .brewery-card .card-details .detail-value {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .brewery-card .card-details .detail-value a {
+            color: var(--gold);
+        }
+
+        .brewery-card .card-details .detail-value a:hover {
+            text-decoration: underline;
+        }
+
+        .brewery-card .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 1rem;
+        }
+
+        .brewery-card .card-tags span {
+            background: rgba(212, 160, 23, 0.12);
+            color: var(--gold);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            letter-spacing: 0.3px;
+            border: 1px solid rgba(212, 160, 23, 0.1);
+        }
+
+        /* ============================================================
+                   MAP
+                   ============================================================ */
+        #map {
+            background: var(--bg-primary);
+        }
+
+        .map-wrapper {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            background: var(--bg-panel);
+            border: 1px solid var(--border-subtle);
+            min-height: 320px;
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+            display: block;
+        }
+
+        /* ============================================================
+                   CTA
+                   ============================================================ */
+        #cta {
+            background:
+                linear-gradient(rgba(10, 8, 6, 0.85), rgba(10, 8, 6, 0.92)),
+                url('https://images.unsplash.com/photo-1535958636474-b021ee887b5f?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+            text-align: center;
+            padding: 5rem 0;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        #cta h2 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        #cta h2 span {
+            color: var(--gold);
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        #cta p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0.5rem auto 2rem;
+            font-weight: 300;
+        }
+
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
+        footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-subtle);
+            padding: 2.5rem 0 1.5rem;
+        }
+
+        .footer-flex {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-brand strong {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--text-primary);
+        }
+
+        .footer-brand strong span {
+            color: var(--gold);
+        }
+
+        .footer-brand .tagline {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-social a:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(212, 160, 23, 0.15);
+        }
+
+        .footer-copy {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .footer-copy .heart {
+            color: #d4a017;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+
+        /* --- Tablets & small laptops --- */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .breweries-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .about-image {
+                min-height: 220px;
+                order: -1;
+            }
+
+            .about-image img {
+                max-width: 60%;
+            }
+
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 1.5rem 0 1rem;
+                gap: 1rem;
+                background: var(--bg-panel);
+                border-top: 1px solid var(--border-subtle);
+                margin-top: 0.5rem;
+                align-items: center;
+            }
+
+            nav ul.open {
+                display: flex;
+            }
+
+            nav ul li a {
+                font-size: 1rem;
+            }
+
+            nav ul li a.btn-nav {
+                font-size: 0.9rem;
+                padding: 0.5rem 1.8rem;
+            }
+
+            .header-flex {
+                flex-wrap: wrap;
+            }
+
+            .logo-img {
+                height: 38px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                padding: 4rem 0 3.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+
+            .hero .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero .btn-group .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .section-title {
+                font-size: 1.9rem;
+            }
+
+            .section-sub {
+                font-size: 1rem;
+            }
+
+            #cta h2 {
+                font-size: 2.2rem;
+            }
+
+            .breweries-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .brewery-card {
+                padding: 1.5rem;
+            }
+
+            .brewery-card .card-details {
+                grid-template-columns: 1fr;
+                gap: 0.2rem;
+            }
+
+            .map-wrapper iframe {
+                height: 280px;
+            }
+
+            .footer-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .about-image img {
+                max-width: 50%;
+            }
+
+            section {
+                padding: 3.5rem 0;
+            }
+        }
+
+        /* --- Small phones --- */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.4rem;
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            #cta h2 {
+                font-size: 1.8rem;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            .logo-tagline {
+                font-size: 0.5rem;
+            }
+
+            .logo-img {
+                height: 32px;
+            }
+
+            .brewery-card .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .brewery-card .card-logo {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        /* --- Print --- */
+        @media print {
+            header,
+            .hero,
+            .cta,
+            footer {
+                background: #fff !important;
+                color: #000 !important;
+            }
+            .btn {
+                background: #eee !important;
+                color: #000 !important;
+                border: 1px solid #ccc !important;
+            }
+            .brewery-card {
+                break-inside: avoid;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+            }
+            .hero::after {
+                display: none !important;
+            }
+            .map-wrapper iframe {
+                height: 200px !important;
+            }
+        }
+
+        /* --- Utility --- */
+        .sr-only {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            border: 0 !important;
+        }
+
+        /* --- Focus styles for accessibility --- */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header role="banner">
+        <div class="container header-flex">
+            <div class="logo-wrap">
+                <img src="/images/krc_logo.png" alt="KZN Craft Revolution Logo" class="logo-img" width="48" height="48" />
+                <div>
+                    <div class="logo-text">KZN<span>Craft</span></div>
+                    <span class="logo-tagline">Revolution</span>
+                </div>
+            </div>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav role="navigation" aria-label="Main navigation">
+                <ul id="nav-menu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#breweries">Breweries</a></li>
+                    <li><a href="#map">Find Us</a></li>
+                    <li><a href="#cta" class="btn-nav">Join</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="container">
+            <h1 id="hero-title">Join the <span>Revolution</span></h1>
+            <p>
+                After originally leading the craft revolution in South Africa by opening
+                some of the first micro-breweries in our country, KZN slowly fell off the
+                pace being set by the Cape Town &amp; Gauteng movement. Now with established
+                breweries starting to establish themselves on a national level and new
+                breweries opening at a rapid rate, we are showing that we are a force to be
+                reckoned with.
+            </p>
+            <div class="btn-group">
+                <a href="#breweries" class="btn">Explore Breweries</a>
+                <a href="#cta" class="btn btn-outline">Get Involved</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ABOUT
+    ============================================================ -->
+    <section id="about" aria-labelledby="about-title">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="section-title" id="about-title">The <span>Revival</span></h2>
+                    <div class="section-divider" style="margin-left:0;"></div>
+                    <p>
+                        KZN Craft Revolution is a movement dedicated to celebrating and
+                        supporting the vibrant craft beer scene in KwaZulu-Natal. From
+                        Durban to the Midlands, our breweries are crafting world-class
+                        beers with local character and global ambition.
+                    </p>
+                    <p>
+                        We believe in community, quality, and the spirit of innovation.
+                        Whether you're a seasoned beer lover or just starting your journey,
+                        there's a place for you in the revolution.
+                    </p>
+                    <a href="#breweries" class="btn" style="margin-top:0.5rem;">Discover the Breweries</a>
+                </div>
+                <div class="about-image">
+                    <img src="/images/krc_logo.png" alt="KZN Craft Revolution Logo" width="400" height="400" loading="lazy" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    BREWERIES
+    ============================================================ -->
+    <section id="breweries" aria-labelledby="breweries-title">
+        <div class="container text-center">
+            <h2 class="section-title" id="breweries-title">Our <span>Breweries</span></h2>
+            <div class="section-divider"></div>
+            <p class="section-sub">
+                From established names to exciting new openings, these are the
+                pioneers of the KZN craft beer scene.
+            </p>
+
+            <div class="breweries-grid">
+
+                <!-- 1000 Hills -->
+                <div class="brewery-card">
+                    <div class="card-header">
+                        <div class="card-logo">
+                            <img src="/images/1000-hills-logo.png" alt="1000 Hills Brewing Company Logo" loading="lazy" />
+                        </div>
+                        <div class="card-title">
+                            <h3>1000 Hills Brewing Company</h3>
+                            <span class="est">Est. 2009</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Established in 2009 (as Porcupine Quill Brewing Company), the brewery forms part of 1000 Hills Chef School where Advanced Students learn the art of Craft Beer Brewing. This brings a unique approach to brewing – with flavour and food in mind. In true craft tradition, we prefer not to follow any particular style too closely but rather experiment with our own styles.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-label">Brewer:</span><span class="detail-value">Trevor Maarschalk</span>
+                            <span class="detail-label">Owner:</span><span class="detail-value">Trevor Maarschalk</span>
+                            <span class="detail-label">Web:</span><span class="detail-value"><a href="https://www.1000hillsbrewery.co.za" target="_blank" rel="noopener">1000hillsbrewery.co.za</a></span>
+                            <span class="detail-label">Contact:</span><span class="detail-value">031 777 1566</span>
+                            <span class="detail-label" style="grid-column:1/-1;">Address:</span>
+                            <span class="detail-value" style="grid-column:1/-1;">4 Wootton Ave, Botha's Hill, KZN, 3660</span>
+                        </div>
+                        <div class="card-tags">
+                            <span>🍺 Pale Ale</span>
+                            <span>🏫 Chef School</span>
+                            <span>🌿 Craft</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jabula -->
+                <div class="brewery-card">
+                    <div class="card-header">
+                        <div class="card-logo">
+                            <img src="/images/jabula-brew-co-logo.png" alt="Jabula Brew Co. Logo" loading="lazy" />
+                        </div>
+                        <div class="card-title">
+                            <h3>Jabula Brew Co.</h3>
+                            <span class="est">Est. 2019</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Born and bred in the "031", Jabula Brew Co was founded by maverick home brewer and events organiser Warren Eades. His passion lies in unifying people from different communities through entertainment and craft beer. Jabula's "fruitilicious" beers embody the soul of summer.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-label">Brewers:</span><span class="detail-value">Warren Eades &amp; Marc Freeman</span>
+                            <span class="detail-label">Owners:</span><span class="detail-value">Eades, Edwards &amp; Freeman</span>
+                            <span class="detail-label">Web:</span><span class="detail-value"><a href="https://www.jabulabrew.co.za" target="_blank" rel="noopener">jabulabrew.co.za</a></span>
+                            <span class="detail-label">Contact:</span><span class="detail-value">061 998 8108</span>
+                            <span class="detail-label" style="grid-column:1/-1;">Facilities:</span>
+                            <span class="detail-value" style="grid-column:1/-1;">Contract brewery</span>
+                        </div>
+                        <div class="card-tags">
+                            <span>🍺 NEIPA</span>
+                            <span>🌞 Summer</span>
+                            <span>🎉 Events</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lions River -->
+                <div class="brewery-card">
+                    <div class="card-header">
+                        <div class="card-logo">
+                            <img src="/images/lions-river-brewery-logo.png" alt="Lions River Craft Brewery Logo" loading="lazy" />
+                        </div>
+                        <div class="card-title">
+                            <h3>Lions River Craft Brewery</h3>
+                            <span class="est">Est. 2015</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Irish born Ronald McClelland has had a lifelong love affair with beer. He started brewing as a hobby, and after locals demanded more, he imported a Speidel Braumeister from Germany. Now with a beer garden open Thursday–Sunday, visitors can enjoy tours, taps, and country platters.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-label">Brewer:</span><span class="detail-value">Ronald McClelland</span>
+                            <span class="detail-label">Owner:</span><span class="detail-value">Ronald McClelland</span>
+                            <span class="detail-label">Web:</span><span class="detail-value"><a href="https://www.lionsriverbrewery.co.za" target="_blank" rel="noopener">lionsriverbrewery.co.za</a></span>
+                            <span class="detail-label">Contact:</span><span class="detail-value">083 775 8549</span>
+                            <span class="detail-label" style="grid-column:1/-1;">Address:</span>
+                            <span class="detail-value" style="grid-column:1/-1;">72 Riverside Farm, Lidgetton, Midlands</span>
+                        </div>
+                        <div class="card-tags">
+                            <span>🍺 German-style</span>
+                            <span>🌳 Beer Garden</span>
+                            <span>🏞️ Midlands</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nguni -->
+                <div class="brewery-card">
+                    <div class="card-header">
+                        <div class="card-logo">
+                            <img src="/images/nguni-brewing-co-logo.png" alt="Nguni Brewing Co. Logo" loading="lazy" />
+                        </div>
+                        <div class="card-title">
+                            <h3>Nguni Brewing Co.</h3>
+                            <span class="est">Est. 2016</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Nguni Brewing Co. was founded by three partners: one brew master and two beer enthusiasts. The brand features the head of a Nguni cow — a symbol of the East Coast's heritage. Each Nguni cow bears unique markings, much like human fingerprints, embodying their passion for creating unique beer.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-label">Brewers:</span><span class="detail-value">Shaun Lavery &amp; Jordan Relph</span>
+                            <span class="detail-label">Owners:</span><span class="detail-value">Hulbert, Lavery &amp; Hulbert</span>
+                            <span class="detail-label">Web:</span><span class="detail-value"><a href="https://ngunibeer.co.za" target="_blank" rel="noopener">ngunibeer.co.za</a></span>
+                            <span class="detail-label">Contact:</span><span class="detail-value">031 700 4525</span>
+                            <span class="detail-label" style="grid-column:1/-1;">Address:</span>
+                            <span class="detail-value" style="grid-column:1/-1;">6–8 Moss Road, Westmead</span>
+                        </div>
+                        <div class="card-tags">
+                            <span>🍺 Organic</span>
+                            <span>🐄 Heritage</span>
+                            <span>🌿 Natural</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- That Brewing Co -->
+                <div class="brewery-card">
+                    <div class="card-header">
+                        <div class="card-logo">
+                            <img src="/images/that-brewing-co-logo.png" alt="That Brewing Company Logo" loading="lazy" />
+                        </div>
+                        <div class="card-title">
+                            <h3>That Brewing Company</h3>
+                            <span class="est">Est. 2013</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            How did THAT happen? Sean Roberts predicted craft beer would wash upon Durban's shores and opened Unity Bar. After a chance meeting with home brewer Paul Ten Hoorn Boer, the two built a 300l brewery in a garage. Today they operate from The Foundry in Station Drive with a restaurant and taproom.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-label">Brewer:</span><span class="detail-value">Paul Ten Hoorn Boer</span>
+                            <span class="detail-label">Owner:</span><span class="detail-value">Paul Ten Hoorn Boer</span>
+                            <span class="detail-label">Web:</span><span class="detail-value"><a href="https://www.thatbrewingco.co.za" target="_blank" rel="noopener">thatbrewingco.co.za</a></span>
+                            <span class="detail-label">Contact:</span><span class="detail-value">031 303 2747</span>
+                            <span class="detail-label" style="grid-column:1/-1;">Address:</span>
+                            <span class="detail-value" style="grid-column:1/-1;">Ground Floor, The Foundry, 43 Station Drive</span>
+                        </div>
+                        <div class="card-tags">
+                            <span>🍺 Irish Red</span>
+                            <span>🍽️ Restaurant</span>
+                            <span>🎤 Taproom</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    MAP
+    ============================================================ -->
+    <section id="map" aria-labelledby="map-title">
+        <div class="container text-center">
+            <h2 class="section-title" id="map-title">Find <span>Us</span></h2>
+            <div class="section-divider"></div>
+            <p class="section-sub">
+                Explore the craft beer trail across KwaZulu-Natal.
+            </p>
+            <div class="map-wrapper">
+                <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13837.605978055305!2d31.00980411710768!3d-29.858680357502777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef7aa8881cf195d%3A0x5ac5c7ffa7536325!2sDurban%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1712345678901!5m2!1sen!2sza"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Interactive map of KZN Craft Revolution breweries"
+            ></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+CTA
+============================================================ -->
+<section id="cta" aria-labelledby="cta-title">
+    <div class="container">
+        <h2 id="cta-title">Join the <span>Revolution</span></h2>
+        <p>
+            Support your local craft breweries and stay up to date with everything
+            happening in the KZN craft beer scene.
+        </p>
+        <a href="#" class="btn" style="background:linear-gradient(135deg,#9c00c4,#b820e6);color:#fff !important;box-shadow:0 4px 20px rgba(156,0,196,0.3);">
+            Follow Us on Facebook
+        </a>
+    </div>
+</section>
+
+<!-- ============================================================
+FOOTER
+============================================================ -->
+<footer role="contentinfo">
+    <div class="container">
+        <div class="footer-flex">
+            <div class="footer-brand">
+                <strong>KZN<span>Craft</span></strong>
+                <span class="tagline">Everything craft beer related in KwaZulu-Natal</span>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook" title="Facebook">📘</a>
+                <a href="#" aria-label="Instagram" title="Instagram">📷</a>
+                <a href="#" aria-label="Twitter" title="Twitter">🐦</a>
+                <a href="#" aria-label="YouTube" title="YouTube">▶️</a>
+            </div>
+        </div>
+        <div class="footer-copy">
+            &copy; 2026 KZN Craft Revolution &nbsp;&mdash;&nbsp; Crafted with <span class="heart">🍺</span> in KwaZulu-Natal
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================================
+JAVASCRIPT
+============================================================ -->
+<script>
+    (function() {
+        'use strict';
+
+        // ---- Hamburger toggle ----
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', function() {
+                const isOpen = navMenu.classList.toggle('open');
+                hamburger.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', isOpen);
+            });
+
+            // Close menu when a link is clicked (mobile)
+            navMenu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('open');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        // ---- Smooth scroll for anchor links (with offset) ----
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    const headerHeight = document.querySelector('header').offsetHeight || 80;
+                    const offsetTop = targetEl.getBoundingClientRect().top + window.pageYOffset -
+                    headerHeight;
+                    window.scrollTo({
+                        top: Math.max(0, offsetTop),
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ---- Brewery card click feedback (subtle) ----
+        document.querySelectorAll('.brewery-card').forEach(function(card) {
+            card.addEventListener('click', function(e) {
+                // Ignore if clicking a link inside
+                if (e.target.closest('a')) return;
+                this.style.transition = 'transform 0.1s ease';
+                this.style.transform = 'scale(0.98)';
+                setTimeout(function() {
+                    card.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // ---- Read more toggle (optional enhancement) ----
+        // If you want to add truncation, you can expand this later.
+        // For now, we just keep the full content visible.
+
+        console.log('🍺 KZN Craft Revolution — cheers!');
+    })();
+</script>
+
+</body>
+</html>
